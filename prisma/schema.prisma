@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Glean {
+  id          String @id @default(cuid())
+  title       String @unique
+  description String @default("")
+  image       String @default("")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  tags        TagsOnGleans[]
+  collections GleansOnCollections[]
+}
+
+model GleanTag {
+  id   String @id @default(cuid())
+  name String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  gleans TagsOnGleans[]
+}
+
+model GleanCollection {
+  id   String @id @default(cuid())
+  name String @unique
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  gleans GleansOnCollections[]
+}
+
+model TagsOnGleans {
+  glean   Glean    @relation(fields: [gleanId], references: [id])
+  gleanId String
+  tag     GleanTag @relation(fields: [tagId], references: [id])
+  tagId   String
+
+  @@id([gleanId, tagId])
+}
+
+model GleansOnCollections {
+  glean        Glean           @relation(fields: [gleanId], references: [id])
+  gleanId      String
+  collection   GleanCollection @relation(fields: [collectionId], references: [id])
+  collectionId String
+
+  @@id([gleanId, collectionId])
+}
