@@ -117,14 +117,16 @@ const AddGlean: FC<Props> = ({
               setGlean((prev) => ({ ...prev, collections: value }))
             }
           />
-          <div className="mt-[46px] flex items-center gap-[17px]">
-            <SecondaryButton onClick={onBack} text="Back" />
-            <LoadingButton
-              isLoading={isLoading}
-              onClick={onCreateGlean}
-              text="Add Glean"
-              style={{ width: 107 }}
-            />
+          <div className="mt-auto">
+            <div className="mt-[46px] flex items-center gap-[17px]">
+              <SecondaryButton onClick={onBack} text="Back" />
+              <LoadingButton
+                isLoading={isLoading}
+                onClick={onCreateGlean}
+                text="Add Glean"
+                style={{ width: 107 }}
+              />
+            </div>
           </div>
         </Dialog.Panel>
       </Transition.Child>
