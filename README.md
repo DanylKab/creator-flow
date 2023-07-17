@@ -6,6 +6,8 @@ Test assessment showcasing a flow for creating Gleans built with Next.js.
 
 <https://github.com/DanylKab/creator-flow/assets/138477122/a96c7852-3c5c-4111-98df-bbea17fdcd05>
 
+You can find deployed version at: <https://creator-flow.vercel.app/>
+
 ## Get Started
 
 1. Install dependencies: `npm install`.
